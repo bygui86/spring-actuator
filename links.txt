@@ -1,0 +1,31 @@
+
+---[ SpringActuator - Sample ]---
+
+
+---[ Theory
+
+DONE
+https://github.com/rzwitserloot/lombok/issues/1671
+https://github.com/rzwitserloot/lombok/issues/1636
+
+IN PROGRESS
+http://www.baeldung.com/spring-boot-actuators
+
+TODO
+https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
+https://docs.spring.io/spring-boot/docs/2.0.x/actuator-api/html/
+
+
+---[ Frameworks/Platforms
+
+-
+
+
+---[ Code
+
+-
+
+
+---[ Repo / Examples
+
+-
