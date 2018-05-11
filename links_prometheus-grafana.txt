@@ -6,17 +6,24 @@
 
 DONE
 https://dzone.com/articles/using-micrometer-with-spring-boot-2
+https://prometheus.io/docs/prometheus/latest/getting_started/
+http://docs.grafana.org/installation/mac/
+https://prometheus.io/docs/visualization/grafana/
+https://aboullaite.me/spring-boot-monitoring-prometheus-grafana/
+http://blog.monkey.codes/actuator-and-prometheus/
+https://www.digitalocean.com/community/tutorials/how-to-install-prometheus-using-docker-on-ubuntu-14-04
+https://finestructure.co/blog/2016/5/16/monitoring-with-prometheus-grafana-docker-part-1
 
 IN PROGRESS
-https://aboullaite.me/spring-boot-monitoring-prometheus-grafana/
+-
 
 TODO
-http://blog.monkey.codes/actuator-and-prometheus/
+-
 
 
 ---[ Frameworks/Platforms
 
--
+https://grafana.com/dashboards
 
 
 ---[ Code
@@ -26,4 +33,6 @@ http://blog.monkey.codes/actuator-and-prometheus/
 
 ---[ Repo / Examples
 
--
+https://github.com/aboullaite/spring-boot-prometheus
+https://github.com/monkey-codes/spring-boot-restful
+https://gist.github.com/monkey-codes/65a3464537ca2b786215b47fe06104da
