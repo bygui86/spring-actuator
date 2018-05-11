@@ -1,0 +1,795 @@
+{
+	"info": {
+		"_postman_id": "767de8e2-024f-49ca-a61f-75f89b8823b3",
+		"name": "SPRINGACTUATOR__TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Standard",
+			"description": "",
+			"item": [
+				{
+					"name": "Actuator endpoints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AuditEvents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/auditevents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"auditevents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AuditEvents filtered",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f86bcce-ad7e-4d58-bd7a-3069ac7cb50a",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"pm.globals.set(\"auditevents_principal\", \"matteobaiguini\");",
+									"pm.globals.set(\"auditevents_type\", \"login\");",
+									"pm.globals.set(\"auditevents_after\", \"2018-01-01T12:00:12.122Z\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/auditevents?principal={{auditevents_principal}}&type={{auditevents_type}}&after={{auditevents_after}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"auditevents"
+							],
+							"query": [
+								{
+									"key": "principal",
+									"value": "{{auditevents_principal}}"
+								},
+								{
+									"key": "type",
+									"value": "{{auditevents_type}}"
+								},
+								{
+									"key": "after",
+									"value": "{{auditevents_after}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Beans",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/beans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"beans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Environment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b0bd203-b3b6-478a-83d0-3ff9d9bed6a3",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/env",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"env"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Environment property",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ab4d8614-b4de-48ad-85c4-0df7aea961ea",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7caa6fe5-cd64-4e3a-ba08-1faa050261d9",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"pm.globals.set(\"env_property\", \"local.server.port\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/env/{{env_property}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"env",
+								"{{env_property}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Loggers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "591e55d3-3176-4d39-8073-c2113a4fa0bc",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/loggers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"loggers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single logger",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bbcf7da9-4a44-477a-983e-af2b68eb5808",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/loggers/com.rabbitshop.springactuatorsample",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"loggers",
+								"com.rabbitshop.springactuatorsample"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mappings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bf5c0cba-6713-41a8-a858-c4e37c6cac17",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Metrics",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/metrics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"metrics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Specific metric",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fc19dd96-94f7-4e5f-9206-1b8874b980f9",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"pm.globals.set(\"specific_metric\", \"jvm.memory.used\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/metrics/{{specific_metric}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"metrics",
+								"{{specific_metric}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HTTP trace",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/httptrace",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"httptrace"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scheduled tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7952720-1dfa-4498-9081-389c0b5a354b",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/scheduledtasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"scheduledtasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thread dump",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b2bf2a4-692b-4b3c-a057-62293bd68ebe",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/threaddump",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"threaddump"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Additionals",
+			"description": "",
+			"item": [
+				{
+					"name": "Prometheus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc275901-581e-4ffe-a977-e162b677d702",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/prometheus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator shutdown",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45da07cd-9c56-4f2f-85cc-5a2c14abad5b",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/actuator/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"actuator",
+								"shutdown"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Custom shutdown",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0259f5dd-3bdf-416f-b5a1-7e7f60579214",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/custom/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"custom",
+								"shutdown"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

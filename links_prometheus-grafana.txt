@@ -1,0 +1,29 @@
+
+---[ SpringActuator - Sample - Prometheus + Grafana]---
+
+
+---[ Theory
+
+DONE
+https://dzone.com/articles/using-micrometer-with-spring-boot-2
+
+IN PROGRESS
+https://aboullaite.me/spring-boot-monitoring-prometheus-grafana/
+
+TODO
+http://blog.monkey.codes/actuator-and-prometheus/
+
+
+---[ Frameworks/Platforms
+
+-
+
+
+---[ Code
+
+-
+
+
+---[ Repo / Examples
+
+-

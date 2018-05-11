@@ -4,10 +4,12 @@
 buildscript {
 	ext {
 		springBootVersion = '2.0.1.RELEASE'
+		micrometerPrometheusVersion = '1.0.4'
 		slf4jVersion = '1.7.25'
 		lombokVersion = '1.16.20'
 		dockerPluginVersion = '1.2'
 		aptPluginVersion = '0.4'
+		gitPluginVersion = '1.4.21'
 	}
 
 	repositories {
@@ -19,6 +21,7 @@ buildscript {
 		classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: "${springBootVersion}"
 		classpath group: 'se.transmode.gradle', name: 'gradle-docker', version: "${dockerPluginVersion}"
 		classpath group: 'net.ltgt.gradle', name: 'gradle-apt-plugin', version: "${aptPluginVersion}"
+		classpath group: 'gradle.plugin.com.gorylenko.gradle-git-properties', name: 'gradle-git-properties', version: "${gitPluginVersion}"
 	}
 }
 
@@ -28,11 +31,11 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'net.ltgt.apt'
 apply plugin: 'docker'
+apply plugin: 'com.gorylenko.gradle-git-properties'
 
 // COMPILING
 group 'com.rabbitshop'
 version '0.1'
-
 
 jar {
 	baseName = 'springactuatorsample'
@@ -41,6 +44,7 @@ jar {
 
 // See https://docs.gradle.org/current/dsl/org.gradle.api.tasks.compile.JavaCompile.html
 compileJava {
+
 	// The Java language level to use to compile the source files.
 	sourceCompatibility = 1.8
 
@@ -58,6 +62,21 @@ compileJava {
 	options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
 }
 
+// BUILD INFO
+springBoot {
+	buildInfo()
+}
+
+// GRADLE PROPERTY EXPANSION (Spring properties not included)
+processResources {
+	doFirst {
+		filesMatching('application.properties') {
+			println 'Processing application.properties file to replace key with values...'
+			expand project.properties
+		}
+	}
+}
+
 // REPOS
 repositories {
 	mavenCentral()
@@ -66,21 +85,26 @@ repositories {
 // DEPENDENCIES
 dependencies {
 
-	// Spring Boot
+	// Spring Actuator
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: "${springBootVersion}"
 
 	// Spring Boot DevTools
 	runtime group: 'org.springframework.boot', name: 'spring-boot-devtools', version: "${springBootVersion}"
 
 	// Spring Web
-//	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
+
+	// Spring Security
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: "${springBootVersion}"
+
+	// Micrometer - Prometheus
+	compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: "${micrometerPrometheusVersion}"
 
 	// Slf4j
 	compile group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
 
 	// Lombok
 	compileOnly group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
-//	apt group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
 	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
 }
 

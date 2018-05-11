@@ -1,0 +1,36 @@
+
+---[ SpringActuator - Sample ]---
+
+
+---[ Theory
+
+DONE
+https://github.com/rzwitserloot/lombok/issues/1671
+https://github.com/rzwitserloot/lombok/issues/1636
+https://docs.spring.io/spring-boot/docs/2.0.x/actuator-api/html/
+https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
+https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-git-info
+https://plugins.gradle.org/plugin/com.gorylenko.gradle-git-properties
+https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-build-info
+http://www.baeldung.com/spring-boot-shutdown
+
+IN PROGRESS
+http://www.baeldung.com/spring-boot-actuators
+
+TODO
+-
+
+
+---[ Frameworks/Platforms
+
+-
+
+
+---[ Code
+
+-
+
+
+---[ Repo / Examples
+
+-
