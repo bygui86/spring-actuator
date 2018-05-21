@@ -13,12 +13,14 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#
 https://plugins.gradle.org/plugin/com.gorylenko.gradle-git-properties
 https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-build-info
 http://www.baeldung.com/spring-boot-shutdown
+http://www.baeldung.com/spring-boot-actuators
+https://spring.io/blog/2017/08/22/introducing-actuator-endpoints-in-spring-boot-2-0
 
 IN PROGRESS
-http://www.baeldung.com/spring-boot-actuators
+-
 
 TODO
--
+https://www.youtube.com/watch?v=hieLEsp5cTk
 
 
 ---[ Frameworks/Platforms

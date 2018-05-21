@@ -35,11 +35,11 @@ apply plugin: 'com.gorylenko.gradle-git-properties'
 
 // COMPILING
 group 'com.rabbitshop'
-version '0.1'
+version '0.1-snapshot'
 
 jar {
 	baseName = 'springactuatorsample'
-	version = '0.1'
+	version = "${version}"
 }
 
 // See https://docs.gradle.org/current/dsl/org.gradle.api.tasks.compile.JavaCompile.html

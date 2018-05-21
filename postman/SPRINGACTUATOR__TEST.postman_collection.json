@@ -678,6 +678,195 @@
 			"description": "",
 			"item": [
 				{
+					"name": "Features",
+					"description": null,
+					"item": [
+						{
+							"name": "Get features",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e18d8048-0bc0-4961-9b10-7fd552c782fd",
+										"type": "text/javascript",
+										"exec": [
+											"",
+											"tests[\"200 OK\"] = responseCode.code === 200;",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:9192/actuator/features",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9192",
+									"path": [
+										"actuator",
+										"features"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post feature",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fe50311e-f279-4d87-8a78-9599433097f7",
+										"type": "text/javascript",
+										"exec": [
+											"",
+											"tests[\"204 No content\"] = responseCode.code === 204;",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"logLevel\": \"WARN\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9192/actuator/features/test",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9192",
+									"path": [
+										"actuator",
+										"features",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get feature",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "78f0c83d-bf4f-419e-b4ce-0a4729ceb5e2",
+										"type": "text/javascript",
+										"exec": [
+											"",
+											"tests[\"200 OK\"] = responseCode.code === 200;",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:9192/actuator/features/test",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9192",
+									"path": [
+										"actuator",
+										"features",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove feature",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2797d96b-31ae-4df3-8a8c-1773914443d3",
+										"type": "text/javascript",
+										"exec": [
+											"",
+											"tests[\"204 No content\"] = responseCode.code === 204;",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:9192/actuator/features/test",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9192",
+									"path": [
+										"actuator",
+										"features",
+										"test"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "Prometheus",
 					"event": [
 						{
