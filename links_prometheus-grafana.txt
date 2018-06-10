@@ -12,12 +12,15 @@ https://prometheus.io/docs/visualization/grafana/
 https://aboullaite.me/spring-boot-monitoring-prometheus-grafana/
 http://blog.monkey.codes/actuator-and-prometheus/
 https://www.digitalocean.com/community/tutorials/how-to-install-prometheus-using-docker-on-ubuntu-14-04
-https://finestructure.co/blog/2016/5/16/monitoring-with-prometheus-grafana-docker-part-1
 https://forums.docker.com/t/accessing-host-machine-from-within-docker-container/14248/11
 https://logz.io/blog/prometheus-monitoring/
 
 IN PROGRESS
--
+https://finestructure.co/blog/2016/5/16/monitoring-with-prometheus-grafana-docker-part-1
+https://github.com/vegasbrianc/prometheus/blob/master/docker-stack.yml
+https://ops.tips/blog/initialize-grafana-with-preconfigured-dashboards/
+https://github.com/cirocosta/sample-grafana/blob/master/grafana/Dockerfile
+http://docs.grafana.org/v5.0/administration/provisioning/#dashboards
 
 TODO
 -
