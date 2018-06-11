@@ -1,6 +1,6 @@
-package com.rabbitshop.springactuatorsample.controllers;
+package com.rabbitshop.springactuatorsample.actuator.controllers;
 
-import com.rabbitshop.springactuatorsample.services.SpringApplicationService;
+import com.rabbitshop.springactuatorsample.actuator.services.SpringApplicationService;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;

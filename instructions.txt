@@ -1,5 +1,0 @@
-
----[ SpringActuator - Sample - Instructions ]---
-
-
-

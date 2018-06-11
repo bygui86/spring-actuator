@@ -1,4 +1,4 @@
-package com.rabbitshop.springactuatorsample.endpoints.extensions;
+package com.rabbitshop.springactuatorsample.actuator.endpoints.extensions;
 
 import lombok.AccessLevel;
 import lombok.Getter;

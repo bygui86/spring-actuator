@@ -17,20 +17,34 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	static String ACTUATOR_URL_MATCHER = "/actuator/**";
+	static String ACTUATOR_DEFAULT_URL_MATCHER = "/actuator/**";
 
-	static String CUSTOMER_URL_MATCHER = "/custom/**";
+	static String ACTUATOR_CUSTOM_URL_MATCHER = "/custom/**";
 
+	static String DOMAIN_URL_MATCHER = "/catalog/**";
+
+	static String NOTIFICATION_URL_MATCHER = "/mail/**";
+
+	/*
+	 * PLEASE NOTE: For sake of simplicity we are omitting specific security configurations
+	 */
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
 
+		log.debug("Loading GENERAL security config...");
+
 		http
-				.csrf().ignoringAntMatchers(ACTUATOR_URL_MATCHER, CUSTOMER_URL_MATCHER)
-				.and()
 				.authorizeRequests()
-				.mvcMatchers(ACTUATOR_URL_MATCHER, CUSTOMER_URL_MATCHER).permitAll()
-				.anyRequest().authenticated()
+				.mvcMatchers(ACTUATOR_DEFAULT_URL_MATCHER, ACTUATOR_CUSTOM_URL_MATCHER).permitAll()
+				.mvcMatchers(DOMAIN_URL_MATCHER, NOTIFICATION_URL_MATCHER).permitAll()
+				.anyRequest().permitAll()
+
 				.and()
-				.httpBasic();
+				.httpBasic()
+
+				.and()
+				.cors().disable()
+				.csrf().disable();
 	}
+
 }

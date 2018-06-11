@@ -979,6 +979,100 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Domain",
+			"description": "",
+			"item": [
+				{
+					"name": "Get catalog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "788995bb-c021-49dc-84d3-b77991012b86",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9192/catalog",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"catalog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send notificaion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "242b8c04-1bf8-4b2e-b040-9b7a1026ac87",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"200 OK\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"recipient\": \"test@rabbitshop.com\",\n\t\"subject\": \"mail-monitoring-test\",\n\t\"text\": \"Mail to test Spring Boot Actuator monitoring on connection health to mail-server\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9192/mail/send",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"mail",
+								"send"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

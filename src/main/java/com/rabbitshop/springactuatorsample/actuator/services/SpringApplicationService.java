@@ -1,4 +1,4 @@
-package com.rabbitshop.springactuatorsample.services;
+package com.rabbitshop.springactuatorsample.actuator.services;
 
 import org.springframework.context.ConfigurableApplicationContext;
 
