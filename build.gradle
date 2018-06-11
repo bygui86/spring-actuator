@@ -5,6 +5,7 @@ buildscript {
 	ext {
 		springBootVersion = '2.0.1.RELEASE'
 		micrometerPrometheusVersion = '1.0.4'
+		h2Version = '1.4.197'
 		slf4jVersion = '1.7.25'
 		lombokVersion = '1.16.20'
 		dockerPluginVersion = '1.2'
@@ -30,8 +31,9 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'net.ltgt.apt'
-apply plugin: 'docker'
 apply plugin: 'com.gorylenko.gradle-git-properties'
+apply plugin: 'docker'
+apply plugin: 'maven'
 
 // COMPILING
 group 'com.rabbitshop'
@@ -62,11 +64,6 @@ compileJava {
 	options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
 }
 
-// BUILD INFO
-springBoot {
-	buildInfo()
-}
-
 // GRADLE PROPERTY EXPANSION (Spring properties not included)
 processResources {
 	doFirst {
@@ -85,17 +82,26 @@ repositories {
 // DEPENDENCIES
 dependencies {
 
-	// Spring Actuator
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: "${springBootVersion}"
-
 	// Spring Boot DevTools
 	runtime group: 'org.springframework.boot', name: 'spring-boot-devtools', version: "${springBootVersion}"
+
+	// Spring Actuator
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: "${springBootVersion}"
 
 	// Spring Web
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
 
 	// Spring Security
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: "${springBootVersion}"
+
+	// Spring Data JPA
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: "${springBootVersion}"
+
+	// Spring Mail
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: "${springBootVersion}"
+
+	// H2
+	compile group: 'com.h2database', name: 'h2', version: "${h2Version}"
 
 	// Micrometer - Prometheus
 	compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: "${micrometerPrometheusVersion}"
@@ -108,19 +114,52 @@ dependencies {
 	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
 }
 
+// SPRING BOOT
+// CONFIGS
+springBoot {
+	buildInfo()
+}
+// PLUGIN
+bootRun {
+	jvmArgs = ["-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"]
+//	jvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"]
+}
+
+// DOCKER
+docker {
+	baseImage 'openjdk:8-jre-alpine'
+	maintainer 'Rabbit team'
+}
+
 // TASKS
 task wrapper(type: Wrapper) {
 	gradleVersion = '4.7'
 }
 
-task image(type: Docker, dependsOn: build) {
-	push = false
-	applicationName = jar.baseName
-	dockerfile = file('docker/Dockerfile')
+task buildDockerfile(type: Docker, dependsOn: build) {
 	doFirst {
+		applicationName = jar.baseName
+
+		addFile('build/libs/', '/opt/')
+		workingDir('/opt')
+		exposePort(9190)
+		entryPoint(["exec java \$JAVA_OPTS -jar ${jar.baseName}-${project.version}.jar"])
+
+		// push = project.hasProperty('push')
+		push = false
+		// Default image tag ${project.group}/${jar.baseName}:${project.version}
+		// tag = '...'
+		// Flag to decide if generate the Docker image (false as default) or not (true)
+		dryRun = true
+	}
+	doLast {
 		copy {
-			from jar
-			into stageDir
+			from 'build/docker/Dockerfile'
+			into './'
 		}
+		println "Dockerfile template properly generated, please review it!"
+		println "Focus on following commands:"
+		println "\t. ADD"
+		println "\t. ENTRYPOINT"
 	}
 }
