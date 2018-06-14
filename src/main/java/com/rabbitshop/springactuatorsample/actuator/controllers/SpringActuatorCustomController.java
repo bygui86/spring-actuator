@@ -19,8 +19,8 @@ import javax.annotation.Resource;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter(value = AccessLevel.PROTECTED)
 @RestController
-@RequestMapping("/custom")
-public class SpringActuatorController {
+@RequestMapping("/actuator/custom")
+public class SpringActuatorCustomController {
 
 	@Value("${spring.application.name}")
 	String applicationName;

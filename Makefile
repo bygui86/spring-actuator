@@ -8,7 +8,7 @@
 NAME := springactuatorsample
 GIT_COMMIT_HASH := $(shell git log --pretty=format:'%h' -n 1)
 
-BUILD_TOOL := ./gradlew
+BUILD_TOOL := ./mvnw
 JAR_FILE := $(shell find build/libs -name '*.jar' 2>/dev/null)
 
 IMAGE_NAME := samples/$(NAME)
@@ -52,19 +52,19 @@ print-variables :		## Print variables values
 # BUILDING
 
 build :		## Build the application excluding tests
-	$(BUILD_TOOL) build -x test
+	$(BUILD_TOOL) package -DskipTests
 
 build-test :		## Build the application including tests
-	$(BUILD_TOOL) build
+	$(BUILD_TOOL) package
 
 clean :		## Clean the application
 	$(BUILD_TOOL) clean
 
 clean-build :		## Clean and Build the application excluding tests
-	$(BUILD_TOOL) clean build -x test
+	$(BUILD_TOOL) clean package -DskipTests
 
 clean-build-test :		## Clean and Build the application including tests
-	$(BUILD_TOOL) clean build
+	$(BUILD_TOOL) clean package
 
 
 # TESTING
@@ -73,22 +73,28 @@ test : clean-build		## Run all tests in the application
 	$(BUILD_TOOL) test
 
 unit-test : clean-build		## Run Unit tests in the application
-	$(BUILD_TOOL) test --test *UnitTest
+	$(BUILD_TOOL) test
 
 integration-test : clean-build		## Run Integration tests in the application
-	$(BUILD_TOOL) test --test *IntegrationTest
+	$(BUILD_TOOL) -Dtest=*IntegrationTest test
 
 specific-test : clean-build		## Run Specific tests in the application
-	$(BUILD_TOOL) test --test $@
+	$(BUILD_TOOL) -Dtest=$@ test
 
 
 # RUNNING
 
-run :		## Run the application through Spring Boot
-	$(BUILD_TOOL) bootRun -x test
+run :		## Run the application through Spring Boot plugin
+	$(BUILD_TOOL) spring-boot:run -DskipTests
 
-javarun :		## Run the application through the generated fat-jar
+debug :		## Run the application in debug mode through Spring Boot plugin
+	$(BUILD_TOOL) spring-boot:run -DskipTests -Dexec.args='-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005'
+
+java-run :		## Run the application through the generated fat-jar
 	java -jar $(JAR_FILE)
+
+java-debug :		## Run the application in debug mode through the generated fat-jar
+	java -jar $(JAR_FILE) -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
 
 
 # DOCKER

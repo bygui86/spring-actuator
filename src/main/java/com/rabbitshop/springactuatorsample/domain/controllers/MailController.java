@@ -27,11 +27,11 @@ public class MailController {
 
 	@PostMapping(path = "/send")
 	@ResponseStatus(value = HttpStatus.OK)
-	public void sendMail(@RequestBody final MailDto mail) {
+	public void sendMail(@RequestBody final MailDto mailDto) {
 
 		log.debug("Send email");
 
-		getMailService().sendEmail(mail);
+		getMailService().sendEmail(mailDto);
 	}
 
 }

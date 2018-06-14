@@ -19,8 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	static String ACTUATOR_DEFAULT_URL_MATCHER = "/actuator/**";
 
-	static String ACTUATOR_CUSTOM_URL_MATCHER = "/custom/**";
-
 	static String DOMAIN_URL_MATCHER = "/catalog/**";
 
 	static String NOTIFICATION_URL_MATCHER = "/mail/**";
@@ -31,11 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
 
-		log.debug("Loading GENERAL security config...");
+		log.debug("Loading INSECURE security config...");
 
 		http
 				.authorizeRequests()
-				.mvcMatchers(ACTUATOR_DEFAULT_URL_MATCHER, ACTUATOR_CUSTOM_URL_MATCHER).permitAll()
+				.mvcMatchers(ACTUATOR_DEFAULT_URL_MATCHER).permitAll()
 				.mvcMatchers(DOMAIN_URL_MATCHER, NOTIFICATION_URL_MATCHER).permitAll()
 				.anyRequest().permitAll()
 
