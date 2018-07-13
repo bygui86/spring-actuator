@@ -46,6 +46,9 @@ out/
 eclipsebin/
 RemoteSystemsTempFiles/
 
+########### Visual Studio Code
+*.code-workspace
+
 
 
 ###################### Build automation tools ###
