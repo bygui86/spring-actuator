@@ -13,14 +13,15 @@
 
 	<properties>
 		<!-- general -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.build.encoding>UTF-8</project.build.encoding>
+		<project.reporting.encoding>UTF-8</project.reporting.encoding>
+
+		<!-- java -->
 		<java-source.version>1.8</java-source.version>
 		<java-target.version>1.8</java-target.version>
 
 		<!-- maven -->
-		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-		<!--<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>-->
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
 
 		<!-- spring -->
 		<spring-boot.version>2.0.2.RELEASE</spring-boot.version>
@@ -156,13 +157,12 @@
 							<goal>repackage</goal>
 						</goals>
 						<configuration>
+							<!-- Additional info added to Actuator info -->
 							<additionalProperties>
-								<!-- TO-BE-TESTED -->
-								<source.encoding>${project.build.sourceEncoding}</source.encoding>
-								<report.encoding>${project.reporting.outputEncoding}</report.encoding>
-								<!---->
 								<java.source>${java-source.version}</java.source>
 								<java.target>${java-target.version}</java.target>
+								<encoding>${project.build.encoding}</encoding>
+								<reporting.encoding>${project.reporting.encoding}</reporting.encoding>
 							</additionalProperties>
 						</configuration>
 					</execution>
@@ -171,15 +171,15 @@
 		</plugins>
 
 		<!-- PLEASE NOTE: compatibility problems with JenkinsX -->
-		<!--<pluginManagement>-->
-		<!--<plugins>-->
-		<!--<plugin>-->
-		<!--<groupId>org.apache.maven.plugins</groupId>-->
-		<!--<artifactId>maven-deploy-plugin</artifactId>-->
-		<!--<version>${maven-deploy-plugin.version}</version>-->
-		<!--</plugin>-->
-		<!--</plugins>-->
-		<!--</pluginManagement>-->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 </project>
