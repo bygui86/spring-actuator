@@ -13,8 +13,8 @@
 
 	<properties>
 		<!-- general -->
-		<project.build.encoding>UTF-8</project.build.encoding>
-		<project.reporting.encoding>UTF-8</project.reporting.encoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- java -->
 		<java-source.version>1.8</java-source.version>
@@ -161,8 +161,8 @@
 							<additionalProperties>
 								<java.source>${java-source.version}</java.source>
 								<java.target>${java-target.version}</java.target>
-								<encoding>${project.build.encoding}</encoding>
-								<reporting.encoding>${project.reporting.encoding}</reporting.encoding>
+								<encoding>${project.build.sourceEncoding}</encoding>
+								<reporting.encoding>${project.reporting.outputEncoding}</reporting.encoding>
 							</additionalProperties>
 						</configuration>
 					</execution>
