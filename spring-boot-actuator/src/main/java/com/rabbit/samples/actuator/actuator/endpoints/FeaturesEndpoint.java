@@ -12,6 +12,7 @@ import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 import org.springframework.boot.logging.LogLevel;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,6 +25,14 @@ import java.util.concurrent.ConcurrentHashMap;
 public class FeaturesEndpoint {
 
 	Map<String, LogLevel> features = new ConcurrentHashMap<>();
+
+	@PostConstruct
+	public void postConstruct() {
+
+		features.put("default-feature-1", LogLevel.FATAL);
+		features.put("default-feature-2", LogLevel.INFO);
+		features.put("default-feature-3", LogLevel.TRACE);
+	}
 
 	@ReadOperation
 	public Map<String, LogLevel> readFeatures() {
@@ -42,17 +51,17 @@ public class FeaturesEndpoint {
 	}
 
 	@WriteOperation
-	public void writeFeature(@Selector final String name, final LogLevel logLevel) {
+	public void insertFeature(@Selector final String name, final LogLevel logLevel) {
 
-		log.debug("Write feature {} with log-level {}", name, logLevel);
+		log.debug("Insert feature {} with log-level {}", name, logLevel);
 
 		getFeatures().put(name, logLevel);
 	}
 
 	@DeleteOperation
-	public void deleteFeature(@Selector final String name) {
+	public void removeFeature(@Selector final String name) {
 
-		log.debug("Delete feature {}", name);
+		log.debug("Remove feature {}", name);
 
 		getFeatures().remove(name);
 	}

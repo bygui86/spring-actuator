@@ -1,6 +1,7 @@
 package com.rabbit.samples.actuator.actuator.endpoints.extensions;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -14,35 +15,31 @@ import java.util.Map;
 
 
 @Slf4j
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Getter(AccessLevel.PROTECTED)
 @Component
 @EndpointWebExtension(endpoint = InfoEndpoint.class)
-public class InfoEndpointExtension {
+public class CustomInfoEndpointWebExtension {
 
-	static String INFO_MAP_APP = "app";
+	static final String INFO_MAP_APP = "app";
 
-	static String INFO_MAP_APP_VERSION = "version";
+	static final String INFO_MAP_APP_VERSION = "version";
 
-	static String SNAPSHOT_KEYWORD = "snapshot";
+	static final String SNAPSHOT_KEYWORD = "snapshot";
 
-	static int RESPONSE_STATUS_SERVERERROR = 500;
+	static final int RESPONSE_STATUS_SERVERERROR = 500;
 
-	static int RESPONSE_STATUS_OK = 200;
+	static final int RESPONSE_STATUS_OK = 200;
 
-	InfoEndpoint delegate;
-
-	public InfoEndpointExtension(final InfoEndpoint infoEndpoint) {
-
-		delegate = infoEndpoint;
-	}
+	InfoEndpoint infoEndpoint;
 
 	@ReadOperation
 	public WebEndpointResponse<Map> info() {
 
 		log.debug("Custom info endpoint extension...");
 
-		final Map<String, Object> info = getDelegate().info();
+		final Map<String, Object> info = getInfoEndpoint().info();
 		final Integer status = getStatus(info);
 		return new WebEndpointResponse<>(info, status);
 	}

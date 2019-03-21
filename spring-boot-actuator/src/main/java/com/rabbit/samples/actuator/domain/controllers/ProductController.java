@@ -1,5 +1,6 @@
 package com.rabbit.samples.actuator.domain.controllers;
 
+import com.rabbit.samples.actuator.constants.Endpoints;
 import com.rabbit.samples.actuator.domain.data.Product;
 import com.rabbit.samples.actuator.domain.services.ProductService;
 import lombok.AccessLevel;
@@ -19,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter(AccessLevel.PROTECTED)
 @RestController
-@RequestMapping(value = "/products")
+@RequestMapping(Endpoints.DOMAIN)
 public class ProductController {
 
 	ProductService productService;

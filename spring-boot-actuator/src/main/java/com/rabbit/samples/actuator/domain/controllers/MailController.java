@@ -1,5 +1,6 @@
 package com.rabbit.samples.actuator.domain.controllers;
 
+import com.rabbit.samples.actuator.constants.Endpoints;
 import com.rabbit.samples.actuator.domain.data.Mail;
 import com.rabbit.samples.actuator.domain.services.MailService;
 import lombok.AccessLevel;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @Getter(AccessLevel.PROTECTED)
 @RestController
-@RequestMapping(value = "/mail")
+@RequestMapping(Endpoints.MAIL)
 public class MailController {
 
 	MailService mailService;

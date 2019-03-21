@@ -47,9 +47,27 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
 			<version>${micrometer-prometheus.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 
@@ -79,12 +97,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>generate build info</id>
 						<goals>
+							<!-- Git info added to Actuator info endpoint (dependency 'git-commit-id-plugin') -->
 							<goal>build-info</goal>
 							<goal>repackage</goal>
 						</goals>
 						<configuration>
-							<!-- Additional info added to Actuator info -->
+							<!-- General info added to Actuator info endpoint -->
 							<additionalProperties>
 								<java.source>${java.version}</java.source>
 								<java.target>${java.version}</java.target>

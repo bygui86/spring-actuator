@@ -1,12 +1,11 @@
-package com.rabbit.samples.actuator.actuator.services.impl;
+package com.rabbit.samples.actuator.spring.services.impl;
 
-import com.rabbit.samples.actuator.actuator.services.SpringApplicationService;
+import com.rabbit.samples.actuator.spring.services.SpringApplicationService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;

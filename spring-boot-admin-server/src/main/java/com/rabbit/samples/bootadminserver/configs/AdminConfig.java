@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
  * matteo@solidarchitectures.com
  * 15 Mar 2019
  */
-@Configuration
-@EnableAdminServer
+// @Configuration
+// @EnableAdminServer
 public class AdminConfig {
 
 	// no-op

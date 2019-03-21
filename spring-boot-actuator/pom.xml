@@ -112,12 +112,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>generate build info</id>
 						<goals>
+							<!-- Git info added to Actuator info endpoint (dependency 'git-commit-id-plugin') -->
 							<goal>build-info</goal>
 							<goal>repackage</goal>
 						</goals>
 						<configuration>
-							<!-- Additional info added to Actuator info -->
+							<!-- General info added to Actuator info endpoint -->
 							<additionalProperties>
 								<java.source>${java.version}</java.source>
 								<java.target>${java.version}</java.target>

@@ -1,8 +1,7 @@
-package com.rabbit.samples.actuator.actuator.controllers;
+package com.rabbit.samples.actuator.spring.controllers;
 
-import com.rabbit.samples.actuator.actuator.services.SpringApplicationService;
+import com.rabbit.samples.actuator.spring.services.SpringApplicationService;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -13,21 +12,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 
 
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
 @Getter(AccessLevel.PROTECTED)
 @RestController
 @RequestMapping("/admin")
-public class SpringActuatorCustomController {
+public class SpringApplicationController {
 
 	@Value("${spring.application.name}")
 	String applicationName;
 
 	SpringApplicationService springApplicationService;
+
+	public SpringApplicationController(final SpringApplicationService springApplicationService) {
+
+		this.springApplicationService = springApplicationService;
+	}
 
 	@PreDestroy
 	public void onDestroy() {
@@ -44,7 +46,7 @@ public class SpringActuatorCustomController {
 	}
 
 	/**
-	 * PLEASE NOTE: there is no need to specify neither a return statement nor a ResponseStatus, because the application will terminate almost immidiately.
+	 * Alternative to Boot Actuator shutdown endpoint
 	 */
 	@PostMapping("/shutdown")
 	public void shutdown() {
