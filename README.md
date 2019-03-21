@@ -31,9 +31,8 @@
 
 ## TODOs
 
-* integrate security - `IN PROGRESS`
-* integrate sleuth for tracing
 * implement micrometer with prometheus and grafana
+* integrate sleuth for tracing
 
 ---
 
@@ -48,6 +47,10 @@
 * http://www.briansjavablog.com/2017/09/health-checks-metric-s-more-with-spring.html
 * https://www.infoq.com/presentations/spring-boot-actuator
 * https://www.youtube.com/watch?v=hieLEsp5cTk
+
+### Boot Admin
+
+* https://www.vojtechruzicka.com/spring-boot-admin/
 
 ### Micrometer
 * https://www.baeldung.com/micrometer
