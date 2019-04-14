@@ -10,20 +10,25 @@
 
 ## Run
 
-1. Start fake STMP server
+1. Start Prometheus - `IN PROGRESS`
 	```
-	docker run -d --name mailhog -p 1025:1025 -p 8025:8025 mailhog/mailhog
+	docker run -d --name prometheus -v $DOCKER_HOST_CONFIG/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml -v $DOCKER_HOST_DATA/prometheus:/prometheus -p 9090:9090 prom/prometheus --config.file=/etc/prometheus/prometheus.yml
 	```
 
-2. Start Boot Admin server
+2. Start Grafana - `IN PROGRESS`
 	```
-	cd <PROJECT_ROOT_FOLDER>/spring-boot-admin-server
+	docker run -d --name grafana --restart always -v $DOCKER_HOST_DATA/grafana:/var/lib/grafana -e GF_USERS_ALLOW_SIGN_UP=$GF_USERS_ALLOW_SIGN_UP -e GF_SECURITY_ADMIN_PASSWORD=$GF_SECURITY_ADMIN_PASSWORD -p 3000:3000 grafana/grafana
+	```
+
+3. Start Boot Admin server
+	```
+	cd ./spring-boot-admin-server
 	mvnw clean spring-boot:run
 	```
 
-3. Start application
+4. Start application
 	```
-	cd <PROJECT_ROOT_FOLDER>/spring-boot-actuator
+	cd ./spring-boot-actuator
 	mvnw clean spring-boot:run
 	```
 
@@ -33,6 +38,7 @@
 
 * implement micrometer with prometheus and grafana
 * integrate sleuth for tracing
+* expose logs (?)
 
 ---
 
@@ -49,7 +55,6 @@
 * https://www.youtube.com/watch?v=hieLEsp5cTk
 
 ### Boot Admin
-
 * https://www.vojtechruzicka.com/spring-boot-admin/
 
 ### Micrometer
@@ -68,12 +73,14 @@
 * https://gist.github.com/monkey-codes/65a3464537ca2b786215b47fe06104da
 
 ### Grafana
+* https://hub.docker.com/r/grafana/grafana/
 * https://grafana.com/dashboards
 * https://ops.tips/blog/initialize-grafana-with-preconfigured-dashboards/
 * https://github.com/cirocosta/sample-grafana/blob/master/grafana/Dockerfile
 * http://docs.grafana.org/v5.0/administration/provisioning/#dashboards
 
 ### Prometheus
+* https://prometheus.io/docs/prometheus/latest/installation/
 * https://github.com/vegasbrianc/prometheus/blob/master/docker-stack.yml
 * https://prometheus.io/docs/prometheus/latest/getting_started/
 * https://prometheus.io/docs/visualization/grafana/
